@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Validación de Certificado | Lex Justa</title>
+  <title>Validación de Certificados | Lex Justa</title>
 
   <style>
     :root {
       --azul: #071f49;
       --azul-claro: #12386f;
       --dorado: #b58a2f;
-      --dorado-claro: #d6b86a;
       --fondo: #f4f6fa;
       --texto: #1f2937;
       --gris: #667085;
@@ -352,18 +351,48 @@
   </main>
 
   <script>
-    const certificado = {
-      codigo: "LJ-LPAG-126-2025",
-      titular: "Yorvin Bruce Saldaña Ocmin",
-      dni: "75879142",
-      numeroCertificado: "126 del año 2025",
-      institucion: "Lex Justa - Asociación Jurídica",
-      programa: "Ley de Procedimiento Administrativo General - Ley N.° 27444",
-      condicion: "Asistente",
-      duracion: "90 horas académicas",
-      nota: "Dieciocho (18)",
-      fechaEvento: "Del sábado 04 de octubre de 2025 al domingo 02 de noviembre de 2025",
-      fechaEmision: "15 de noviembre de 2025"
+    const certificados = {
+      "LJ-LPAG-126-2025": {
+        codigo: "LJ-LPAG-126-2025",
+        titular: "Yorvin Bruce Saldaña Ocmin",
+        dni: "75879142",
+        numeroCertificado: "126 del año 2025",
+        institucion: "Lex Justa - Asociación Jurídica",
+        programa: "Ley de Procedimiento Administrativo General - Ley N.° 27444",
+        condicion: "Asistente",
+        duracion: "90 horas académicas",
+        nota: "Dieciocho (18)",
+        fechaEvento: "Del sábado 04 de octubre de 2025 al domingo 02 de noviembre de 2025",
+        fechaEmision: "09 de noviembre de 2025"
+      },
+
+      "LJ-DPPP-423-2025": {
+        codigo: "LJ-DPPP-423-2025",
+        titular: "Yorvin Bruce Saldaña Ocmin",
+        dni: "75879142",
+        numeroCertificado: "423 del año 2025",
+        institucion: "Lex Justa - Asociación Jurídica",
+        programa: "Derecho Penal y Procesal Penal",
+        condicion: "Asistente",
+        duracion: "96 horas académicas",
+        nota: "Dieciocho (18)",
+        fechaEvento: "Del 2 de junio de 2025 al 13 de junio de 2025",
+        fechaEmision: "20 de junio de 2025"
+      },
+
+      "LJ-ARJ-097-2025": {
+        codigo: "LJ-ARJ-097-2025",
+        titular: "Yorvin Bruce Saldaña Ocmin",
+        dni: "75879142",
+        numeroCertificado: "097 del año 2025",
+        institucion: "Lex Justa - Asociación Jurídica",
+        programa: "Argumentación y Redacción Jurídica",
+        condicion: "Asistente",
+        duracion: "18 horas académicas",
+        nota: "Dieciocho (18)",
+        fechaEvento: "Del 20 de noviembre de 2025 al 23 de noviembre de 2025",
+        fechaEmision: "30 de noviembre de 2025"
+      }
     };
 
     function limpiarTexto(texto) {
@@ -378,7 +407,6 @@
     function validarCertificado() {
       const entrada = document.getElementById("codigo").value.trim().toUpperCase();
       const resultado = document.getElementById("resultado");
-      const codigoCorrecto = certificado.codigo.toUpperCase();
 
       if (entrada === "") {
         resultado.className = "resultado mostrar invalido";
@@ -389,7 +417,9 @@
         return;
       }
 
-      if (entrada === codigoCorrecto) {
+      const certificado = certificados[entrada];
+
+      if (certificado) {
         resultado.className = "resultado mostrar valido";
         resultado.innerHTML = `
           <div class="estado">Resultado: certificado válido</div>
